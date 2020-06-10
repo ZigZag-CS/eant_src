@@ -15,7 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+
+from .views import *
 
 urlpatterns = [
+    path('', home_page),
+    path('about/', about_page),
+    path('contact/', contact_page),
+    path('login/', login_page),
+    path('register/', register_page),
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+admin.site.site_title = "EU ... treshi la kuru meu"
+admin.site.site_header = "EU ... treshi la kuru meu"
+
