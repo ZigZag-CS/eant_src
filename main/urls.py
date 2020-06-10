@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from .views import *
+from apps.products.views import *
 
 urlpatterns = [
     path('', home_page),
@@ -26,6 +27,7 @@ urlpatterns = [
     path('contact/', contact_page),
     path('login/', login_page),
     path('register/', register_page),
+    path('products/', ProductListView.as_view()),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
