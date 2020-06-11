@@ -12,11 +12,12 @@ def home_page(request):
 
     }
     if request.user.is_authenticated:
-        context.update( {
+        context.update({
             "premium_content": "YAHOOOOO"
         }
         )
     return render(request, 'home_page.html', context)
+
 
 def about_page(request):
     context = {
@@ -24,6 +25,7 @@ def about_page(request):
         "content": "Welcome to about page"
     }
     return render(request, 'home_page.html', context)
+
 
 def contact_page(request):
     contact_form = ContactForm(request.POST or None)
@@ -38,6 +40,7 @@ def contact_page(request):
     # if request.method == "POST":
     #     print(request.POST)
     return render(request, 'contact/view.html', context)
+
 
 def login_page(request):
     form = LoginForm(request.POST or None)
@@ -61,12 +64,12 @@ def login_page(request):
         else:
             print("Error")
 
-
-
     return render(request, "auth/login.html", context)
 
 
 User = get_user_model()
+
+
 def register_page(request):
     form = RegisterForm(request.POST or None)
     context = {
@@ -81,8 +84,9 @@ def register_page(request):
         print(f'new user: {new_user}')
     return render(request, "auth/register.html", context)
 
+
 def home_page_old(request):
-    html_="""
+    html_ = """
         <!doctype html>
         <html lang="en">
           <head>
@@ -91,7 +95,8 @@ def home_page_old(request):
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
             <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         
             <title>Hello, world!</title>
           </head>

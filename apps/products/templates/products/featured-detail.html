@@ -1,0 +1,9 @@
+
+
+{{ object.title }} </br>
+{{ object.description }} </br>
+{% if object.imsage %}
+    <img src="{{ object.image.url }}" class="img-fluid" alt="product-image"/>
+{% else %}
+    NO IMAGE
+{% endif %}

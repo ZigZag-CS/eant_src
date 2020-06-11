@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 class ContactForm(forms.Form):
     fullname = forms.CharField(
         widget=forms.TextInput(
@@ -11,7 +12,7 @@ class ContactForm(forms.Form):
                 "placeholder": "Your full name"
             }
         ))
-    email    = forms.EmailField(
+    email = forms.EmailField(
         widget=forms.EmailInput(
             attrs={
                 "class": "form-control",
@@ -19,24 +20,25 @@ class ContactForm(forms.Form):
             }
         )
     )
-    content  = forms.CharField(
+    content = forms.CharField(
         widget=forms.Textarea(
             attrs={
                 "class": "form-control",
                 "placeholder": "Your message"
             }
-    ))
+        ))
 
     # scrieme validator pu campurile formei. numele functiei tre sa fie clean_<nume camp>
     def clean_email(self):
         email = self.cleaned_data.get("email")
 
-
         return email
+
 
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
 
 class RegisterForm(forms.Form):
     username = forms.CharField()
