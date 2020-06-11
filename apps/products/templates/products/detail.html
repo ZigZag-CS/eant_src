@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
+{% load humanize %}
+
 
 
 {% block content %}
 
-    {{ object.title }} </br>
-    {{ object.description }} </br>
+<div class="container">
+<div class="row">
+    <div class="col">
+
+     <h1>   {{ object.title }} </h1>
+    {{ object.timestamp }}
+    {{ object.description|linebreaks }} </br>
     {% if object.image %}
         <img src="{{ object.image.url }}" class="img-fluid" alt="product-image"/>
     {% else %}
         NO IMAGE
     {% endif %}
+
+    </div>
+</div>
+</div>
 
 {% endblock content %}
