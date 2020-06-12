@@ -7,7 +7,7 @@
 *.pyc
 __pycache__/
 local_settings.py
-
+.idea/
 db.sqlite3-journal
 
 
@@ -240,4 +240,5 @@ fabric.properties
 .idea/$CACHE_FILE$
 
 # End of https://www.toptal.com/developers/gitignore/api/django,pycharm
+/.idea/
 /.idea/

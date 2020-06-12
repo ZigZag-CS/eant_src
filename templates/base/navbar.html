@@ -5,14 +5,17 @@
 {% url 'register' as register_url %}
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+  <div class='container'>
   <a class="navbar-brand" href="{{ home_url }}">
+    <img src="http://getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
       {% if brand_name %}
           {{ brand_name }}
       {% else %}
           LOGO
       {% endif %}
   </a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -20,13 +23,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item {% if request.path == home_url %} active{% endif %}">
-        <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ home_url }}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item {% if request.path == contact_url %} active{% endif %} ">
         <a class="nav-link" href="{{ contact_url }}">Contact</a>
       </li>
       <li class="nav-item {% if request.path == product_list_url %} active{% endif %} ">
-        <a class="nav-link " href="{{ product_list_url }}" tabindex="-1" aria-disabled="true">Products</a>
+        <a class="nav-link " href="{{ product_list_url }}">Products</a>
       </li>
       {% if request.user.is_authenticated %}
       <li class="nav-item {% if request.path == login_url %} active{% endif %} ">
@@ -57,4 +60,5 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
+</div>
 </nav>
