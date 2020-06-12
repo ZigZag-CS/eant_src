@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 
     # project apps
     'apps.products.apps.ProductsConfig',
+    'apps.search.apps.SearchConfig',
+    'apps.tags.apps.TagsConfig',
 
 ]
 
@@ -69,6 +71,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'apps/products/templates'),
+            os.path.join(BASE_DIR, 'apps/search/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
