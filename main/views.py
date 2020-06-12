@@ -6,6 +6,7 @@ from .forms import *
 
 
 def home_page(request):
+    # print(f'Session owner: { request.session.get("first_name", "Unknown") }')
     context = {
         "title": "Hello world",
         "content": "Welcome to home page"

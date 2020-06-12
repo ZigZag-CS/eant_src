@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.products.apps.ProductsConfig',
     'apps.search.apps.SearchConfig',
     'apps.tags.apps.TagsConfig',
+    'apps.carts.apps.CartsConfig',
 
 ]
 
@@ -72,6 +73,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'apps/products/templates'),
             os.path.join(BASE_DIR, 'apps/search/templates'),
+            os.path.join(BASE_DIR, 'apps/carts/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
