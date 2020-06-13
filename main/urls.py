@@ -18,7 +18,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
-from apps.carts.views import *
 
 
 from .views import *
@@ -28,7 +27,8 @@ urlpatterns = [
     path('about/', about_page, name="about"),
     path('contact/', contact_page, name="contact"),
     path('login/', login_page, name="login"),
-    path('cart/', cart_home, name="cart"),
+    # path('cart/', cart_home, name="cart"),
+    path('cart/', include("apps.carts.urls", namespace="carts")),
     path('register/', register_page, name="register"),
     path('bootstrap/', TemplateView.as_view(template_name="bootstrap/example.html")),
     path('products/', include("apps.products.urls", namespace="products")),
