@@ -23,7 +23,7 @@ class CartManager(models.Manager):
                 cart_obj.user = request.user
                 cart_obj.save()
         else:
-            cart_obj = self.new(user=request.user)
+            cart_obj = Cart.objects.new(user=request.user)
             new_obj = True
             request.session["cart_id"] = cart_obj.id
         return cart_obj, new_obj
@@ -60,11 +60,12 @@ def m2m_changed_card_reciever(sender, instance, action, *args, **kwargs):
         total = 0
         for x in products:
             total += x.price
-        if instance.subtotal != instance.total:
+        if instance.subtotal != total:
             instance.subtotal = total
             instance.save()
 
 m2m_changed.connect(m2m_changed_card_reciever, sender=Cart.products.through)
+
 
 
 def pre_save_card_reciever(sender, instance, *args, **kwargs):
@@ -72,5 +73,6 @@ def pre_save_card_reciever(sender, instance, *args, **kwargs):
         instance.total = instance.subtotal + 1
     else:
         instance.total = 0.00
+
 pre_save.connect(pre_save_card_reciever, sender=Cart)
 
