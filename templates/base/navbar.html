@@ -3,6 +3,7 @@
 {% url 'products:list' as product_list_url %}
 {% url 'login' as login_url %}
 {% url 'register' as register_url %}
+{% url 'carts:home' as cart_url %}
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
@@ -31,10 +32,12 @@
       <li class="nav-item {% if request.path == product_list_url %} active{% endif %} ">
         <a class="nav-link " href="{{ product_list_url }}">Products</a>
       </li>
+
+
       {% if request.user.is_authenticated %}
-      <li class="nav-item {% if request.path == login_url %} active{% endif %} ">
-        <a class="nav-link" href="{{ login_url }}">Logout</a>
-      </li>
+          <li class="nav-item {% if request.path == login_url %} active{% endif %} ">
+            <a class="nav-link" href="{{ login_url }}">Logout</a>
+          </li>
       {% else %}
           <li class="nav-item {% if request.path == login_url %} active{% endif %} ">
             <a class="nav-link" href="{{ register_url }}">Register</a>
@@ -43,17 +46,21 @@
             <a class="nav-link" href="{{ login_url }}">Login</a>
           </li>
       {% endif %}
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+            <li class="nav-item {% if request.path == cart_url %} active{% endif %} ">
+{#            <a class="nav-link" href="{{ cart_url }}">Cart {{ request.session.cart_items }}</a>#}
+            <a class="nav-link" href="{{ cart_url }}">{{ request.session.cart_items }} <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+            </li>
+{#      <li class="nav-item dropdown">#}
+{#        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#          Dropdown#}
+{#        </a>#}
+{#        <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+{#          <a class="dropdown-item" href="#">Action</a>#}
+{#          <a class="dropdown-item" href="#">Another action</a>#}
+{#          <div class="dropdown-divider"></div>#}
+{#          <a class="dropdown-item" href="#">Something else here</a>#}
+{#        </div>#}
+{#      </li>#}
     </ul>
 
 {% include "search/snippets/search-form.html" %}
