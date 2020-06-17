@@ -3,7 +3,7 @@ from django.db.models.signals import pre_save, post_save
 from django.urls import reverse
 
 from apps.products.models import Product
-from apps.products.utils import unique_slug_generator
+from main.utils import unique_slug_generator
 
 
 class Tag(models.Model):
