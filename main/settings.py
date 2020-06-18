@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.tags.apps.TagsConfig',
     'apps.carts.apps.CartsConfig',
     'apps.orders.apps.OrdersConfig',
+    'apps.accounts.apps.AccountsConfig',
 
 ]
 
@@ -65,6 +66,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LOGOUT_REDIRECT_URL = '/login/'
+
+
 ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
@@ -75,6 +79,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'apps/products/templates'),
             os.path.join(BASE_DIR, 'apps/search/templates'),
             os.path.join(BASE_DIR, 'apps/carts/templates'),
+            os.path.join(BASE_DIR, 'apps/accounts/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

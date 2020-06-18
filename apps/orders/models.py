@@ -46,7 +46,7 @@ pre_save.connect(pre_save_create_order_id, sender=Order)
 
 
 def post_save_cart_total(sender, instance, created, *args, **kwargs):
-    print("in => post_save_cart_total")
+    # print("in => post_save_cart_total")
     if not created:
         cart_obj = instance
         cart_total = cart_obj.total
