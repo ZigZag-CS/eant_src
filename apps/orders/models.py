@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 
@@ -25,7 +26,9 @@ class Order(models.Model):
 
     def update_total(self):
         cart_total = self.cart.total
-        shipping_total = self.shipping_total
+        print(f'type of:{type(cart_total)}')
+        shipping_total = Decimal(self.shipping_total)
+        print(f'type of:{type(shipping_total)}')
         new_total = cart_total + shipping_total
         self.total = new_total
         self.save()
