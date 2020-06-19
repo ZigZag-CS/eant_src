@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Cart
 
+from .models import *
 
-@admin.register(Cart)
+@admin.register(BillingProfile)
 class OrderAdmin(admin.ModelAdmin):
 
 
     class Meta:
-        model = Cart
+        model = BillingProfile
