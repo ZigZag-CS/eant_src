@@ -3,6 +3,7 @@ from math import fsum
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 
+from apps.billing.models import BillingProfile
 from apps.carts.models import Cart
 from main.utils import *
 
@@ -13,16 +14,17 @@ ORDER_STATUS_CHOICES = (
     ('refunded', 'Refunded'),
 )
 
-
+# Random, Unique
 class Order(models.Model):
+    billing_profile = models.ForeignKey(BillingProfile, on_delete=models.CASCADE, null=True, blank=True)
     order_id        = models.CharField(max_length=120, blank=True) # AB31DE3
-    # billing_profile = ?
     # shipping_address
     # billing_address
     cart            = models.ForeignKey(Cart, on_delete=models.CASCADE)
     status          = models.CharField(max_length=120, default='created', choices=ORDER_STATUS_CHOICES)
     shipping_total  = models.DecimalField(default=5.99, max_digits=100, decimal_places=2)
     total           = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
+    active = models.BooleanField(default=True)
 
 
     def update_total(self):
