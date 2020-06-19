@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 from django.shortcuts import render, redirect
 from django.utils.http import is_safe_url
 # CRUD create update retrieve delete
@@ -22,9 +20,12 @@ def checkout_address_create_view(request):
         billing_profile, billing_profile_created = BillingProfile.objects.new_or_get(request)
 
         if billing_profile is not None:
+            address_type = request.POST.get('address_type', 'shipping')
             instance.billing_profile = billing_profile
-            instance.address_type = request.POST.get('address_type', 'shipping')
+            instance.address_type = address_type
             instance.save()
+            request.session[address_type + "_address_id"] = instance.id
+            print(address_type + "_address_id")
         else:
             print("Error blea")
             return redirect("carts:checkout")
