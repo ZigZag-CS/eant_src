@@ -28,6 +28,7 @@ urlpatterns = [
     path('about/', about_page, name="about"),
     path('contact/', contact_page, name="contact"),
     path('login/', login_page, name="login"),
+    path('register/guest/', guest_register_view, name='guest_register'),
     path('logout/', LogoutView.as_view(), name="logout"),
     path('cart/', include("apps.carts.urls", namespace="carts")),
     path('register/', register_page, name="register"),
@@ -35,16 +36,15 @@ urlpatterns = [
     path('products/', include("apps.products.urls", namespace="products")),
     path('search/', include("apps.search.urls", namespace="search")),
 
-
-
     # path('products/', ProductListView.as_view()),
     # # path('products/<int:pk>/', ProductDetailView.as_view()),
     # path('products/<slug:slug>/', ProductDetailSlugView.as_view()),
     # path('featured/', ProductFeaturedListView.as_view()),
     # path('featured/<int:pk>/', ProductFeaturedDetailView.as_view()),
 
-
     path('admin/', admin.site.urls),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

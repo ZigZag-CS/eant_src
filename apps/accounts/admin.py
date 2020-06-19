@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import GuestEmail
+
+@admin.register(GuestEmail)
+class GuestEmailAdmin(admin.ModelAdmin):
+
+    class Meta:
+        model = GuestEmail
