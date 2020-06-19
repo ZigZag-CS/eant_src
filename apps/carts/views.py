@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 
 from apps.accounts.forms import *
+from apps.addresses.forms import *
+
+from .models import Cart
 from apps.accounts.models import *
 from apps.billing.models import *
 from apps.products.models import *
-from .models import Cart
-from ..orders.models import Order
+from apps.orders.models import Order
 
 
 def cart_home(request):
@@ -41,6 +43,7 @@ def checkout_home(request):
 
     login_form = LoginForm()
     guest_form = GuestForm()
+    address_form = AddressForm()
 
     billing_profile, billing_guest_profile_created = BillingProfile.objects.new_or_get(request)
 
@@ -51,6 +54,7 @@ def checkout_home(request):
         "object": order_obj,
         "billing_profile": billing_profile,
         "login_form": login_form,
-        "guest_form": guest_form
+        "guest_form": guest_form,
+        "address_form": address_form,
     }
     return render(request, "carts/checkout.html", context)
