@@ -18,6 +18,8 @@ def cart_home(request):
 def cart_update(request):
     # print(request.POST)
     product_id = request.POST.get("product_id")
+    if request.is_ajax():
+        print("Ajax request")
     if product_id is not None:
         try:
             product_obj = Product.objects.get(id=product_id)
@@ -49,7 +51,6 @@ def checkout_home(request):
     billing_profile, billing_profile_created = BillingProfile.objects.new_or_get(request)
     address_qs = None
 
-    billing_profile, billing_profile_created = BillingProfile.objects.new_or_get(request)
     if billing_profile is not None:
         if request.user.is_authenticated:
             address_qs = Address.objects.filter(billing_profile=billing_profile)
