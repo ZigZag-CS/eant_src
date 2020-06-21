@@ -14,18 +14,18 @@
     /*body {
       background-color: red;
     }*/
-        h1 {
-          color: green;
-        }
+    h1 {
+      color: green;
+    }
 
-        #header-3 {
+    #header-3 {
 
-        }
-
-        .description {
-          width: 250px;
-          height: 300px;
-        }
+    }
+    .description {
+      width: 250px;
+      height: 300px;
+      padding: 30px 10px;
+    }
   </style>
 
   </head>
@@ -81,7 +81,7 @@ Aliquam iaculis urna felis, ullamcorper venenatis enim tempus vitae. Vestibulum 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
 
-<script type="text/javascript">
+<!--    <script type="text/javascript">
       $(document).ready(function(){
           var num = 124
           var someString = "some string"
@@ -100,13 +100,8 @@ Aliquam iaculis urna felis, ullamcorper venenatis enim tempus vitae. Vestibulum 
                 console.log(obj, "false and/or is not even")
               }
           })
-
-
-
       })
-
-
-   </script>
+   </script> -->
 
 
 
@@ -133,6 +128,31 @@ Aliquam iaculis urna felis, ullamcorper venenatis enim tempus vitae. Vestibulum 
         }, 2000) // in ms
       })
    </script> -->
+
+
+
+
+
+
+
+   <script type="text/javascript">
+      $(document).ready(function(){
+        var $descriptionItems = $(".description")
+        // console.log($descriptionItems.length) // 0, 1, 2
+
+        $.each($descriptionItems, function(index, obj){
+          var item = $(this)
+          var actualHeight = item[0].scrollHeight
+          var shouldBeHeight = item.height()
+          console.log(actualHeight, shouldBeHeight)
+          if (actualHeight > shouldBeHeight + 50){
+            item.css("overflow-y", "scroll")
+          }
+          // console.log(index, item.height())
+          // console.log(index, obj)
+        })
+      })
+   </script>
 
 
 
