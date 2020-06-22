@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
 from apps.accounts.views import *
+from apps.carts.views import *
 from apps.addresses.views import checkout_address_create_view, checkout_address_reuse_view
 from .views import *
 
@@ -32,6 +33,7 @@ urlpatterns = [
     path('checkout/address/create/', checkout_address_create_view, name='checkout_address_create'),
     path('checkout/address/reuse/', checkout_address_reuse_view, name='checkout_address_reuse'),
     path('register/guest/', guest_register_view, name='guest_register'),
+    path('api/cart/', cart_detail_api_view, name="api-cart"),
     path('logout/', LogoutView.as_view(), name="logout"),
     path('cart/', include("apps.carts.urls", namespace="carts")),
     path('register/', register_page, name="register"),
