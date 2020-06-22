@@ -1,4 +1,4 @@
-<form class='form-product-ajax' method='POST' action='{% url "carts:update" %}' class="form">
+<form class='form-product-ajax' method='POST' action='{% url "carts:update" %}' data-endpoint='{% url "carts:update" %}' class="form">
 
     {% csrf_token %}
 
