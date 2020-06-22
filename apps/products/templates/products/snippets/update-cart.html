@@ -4,6 +4,8 @@
 
     <input type='hidden' name='product_id' value='{{ product.id }}' />
 
+<span class='submit-span'>
+
     {% if in_cart %}
         <button type='submit' class='btn btn-link btn-sm' style="padding:0px;cursor: pointer;">Remove?</button>
     {% else %}
@@ -15,5 +17,7 @@
         {% endif %}
         </span>
 {% endif %}
+
+</span>
 
 </form>
