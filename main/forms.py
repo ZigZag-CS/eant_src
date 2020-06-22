@@ -29,9 +29,9 @@ class ContactForm(forms.Form):
         ))
 
     # scrieme validator pu campurile formei. numele functiei tre sa fie clean_<nume camp>
-    def clean_email(self):
-        email = self.cleaned_data.get("email")
-
-        return email
-
-
+    # def clean_email(self):
+    #     email = self.cleaned_data.get("email")
+    #
+    #     return email
+    #
+    #
