@@ -19,3 +19,8 @@ Checkout Process
 - cart
 - status -- shipped? Canceled?
 
+4.1. Backup Fixtures
+python manage.py dumpdata products --format json  --indent 4 > apps/products/fixtures/products.json
+
+4.2. Restore from Fixtures
+python manage.py loaddata apps/products/fixtures/products.json
