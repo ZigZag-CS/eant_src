@@ -108,9 +108,9 @@ class RegisterForm(forms.ModelForm):
     def save(self, commit=True):
         # Save the provided password in hashed format
         user = super(RegisterForm, self).save(commit=False)
-        print(self.cleaned_data)
+        # print(self.cleaned_data)
         user.set_password(self.cleaned_data["password2"])
-        user.active = False  # send confirmation email
+        # user.active = False  # send confirmation email
         if commit:
             user.save()
         return user
