@@ -1,3 +1,7 @@
+LINKS:
+> https://www.codingforentrepreneurs.com/blog/how-to-create-a-custom-django-user-model/
+>
+
 Checkout Process
 
 1. Cart -> Checkout View

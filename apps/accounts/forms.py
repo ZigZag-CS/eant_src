@@ -57,42 +57,65 @@ class GuestForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField()
+    username = forms.EmailField(label="Email")
     password = forms.CharField(widget=forms.PasswordInput)
 
-
-class RegisterForm(forms.Form):
-    username = forms.CharField()
-    email = forms.EmailField()
+# seamana oleaka cu UserAdminCreationForm
+class RegisterForm(forms.ModelForm):
+    """A form for creating new users. Includes all the required
+    fields, plus a repeated password."""
     password = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(label="Confirm pass", widget=forms.PasswordInput)
 
     # validator daca username exista
-    def clean_username(self):
-        username = self.cleaned_data.get("username")
-        qs = User.objects.filter(username=username)
-
-        if qs.exists():
-            raise forms.ValidationError("Username exists")
-
-        return username
+    # def clean_username(self):
+    #     username = self.cleaned_data.get("username")
+    #     qs = User.objects.filter(username=username)
+    #
+    #     if qs.exists():
+    #         raise forms.ValidationError("Username exists")
+    #
+    #     return username
 
     # validator daca username exista
-    def clean_email(self):
-        email = self.cleaned_data.get("email")
-        qs = User.objects.filter(email=email)
+    # def clean_email(self):
+    #     email = self.cleaned_data.get("email")
+    #     qs = User.objects.filter(email=email)
+    #
+    #     if qs.exists():
+    #         raise forms.ValidationError("Email exists")
+    #
+    #     return email
 
-        if qs.exists():
-            raise forms.ValidationError("Email exists")
+    # def clean(self):
+    #     data = self.cleaned_data
+    #     password = self.cleaned_data.get("password")
+    #     password2 = self.cleaned_data.get("password2")
+    #
+    #     if password2 != password:
+    #         raise forms.ValidationError("Password error")
+    #
+    #     return data
 
-        return email
-
-    def clean(self):
-        data = self.cleaned_data
-        password = self.cleaned_data.get("password")
+    def clean_password2(self):
+        # Check that the two password entries match
+        password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Passwords don't match")
+        return password2
 
-        if password2 != password:
-            raise forms.ValidationError("Password error")
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super(RegisterForm, self).save(commit=False)
+        print(self.cleaned_data)
+        user.set_password(self.cleaned_data["password2"])
+        user.active = False  # send confirmation email
+        if commit:
+            user.save()
+        return user
 
-        return data
+
+    class Meta:
+        model = User
+        fields = ('full_name', 'email',)  # 'full_name',)
