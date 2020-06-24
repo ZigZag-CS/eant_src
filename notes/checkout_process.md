@@ -1,6 +1,6 @@
 LINKS:
 > https://www.codingforentrepreneurs.com/blog/how-to-create-a-custom-django-user-model/
->
+> https://www.codingforentrepreneurs.com/blog/custom-analytics-with-django/#watch
 
 Checkout Process
 

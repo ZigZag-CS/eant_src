@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'apps.accounts.apps.AccountsConfig',
     'apps.billing.apps.BillingConfig',
     'apps.addresses.apps.AddressesConfig',
+    'apps.analytics.apps.AnalyticsConfig',
 
 ]
 
