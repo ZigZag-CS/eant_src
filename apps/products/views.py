@@ -2,6 +2,7 @@ from django.http import Http404
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, get_object_or_404
 
+from apps.analytics.signals import object_viewed_signal
 from apps.carts.models import *
 
 from .models import *
@@ -17,6 +18,7 @@ class ProductFeaturedListView(ListView):
 class ProductFeaturedDetailView(DetailView):
     queryset = Product.objects.all().featured()
     template_name = 'products/featured-detail.html'
+
 
     # def get_queryset(self, *args, **kwargs):
     #     request = self.request
@@ -77,6 +79,8 @@ class ProductDetailSlugView(DetailView):
             instance = qs.first()
         except:
             raise Http404("Hmmmm")
+
+        # object_viewed_signal.send(instance.__class__, instance=instance, request=request)
         return instance
 
 
