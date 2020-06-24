@@ -55,6 +55,9 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'accounts.User'
 
+FORCE_SESSION_TO_ONE = False
+FORCE_INACTIVE_USER_ENDSESSION= False
+
 SITE_ID = 1
 
 
@@ -83,6 +86,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'apps/search/templates'),
             os.path.join(BASE_DIR, 'apps/carts/templates'),
             os.path.join(BASE_DIR, 'apps/accounts/templates'),
+            os.path.join(BASE_DIR, 'apps/addresses/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

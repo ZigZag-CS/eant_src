@@ -8,3 +8,6 @@ class ObjectViewedAdmin(admin.ModelAdmin):
 
     class Meta:
         model = ObjectViewed
+
+
+admin.site.register(UserSession)
