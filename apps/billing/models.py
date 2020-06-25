@@ -72,3 +72,8 @@ def user_created_receiver(sender, instance, created, *args, **kwargs):
     # print("tipa conditia nu so indeplinit (((((")
 
 post_save.connect(user_created_receiver, sender=User)
+
+
+# class Card(models.Model):
+#     pass
+
