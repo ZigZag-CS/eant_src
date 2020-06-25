@@ -92,6 +92,7 @@ def user_created_receiver(sender, instance, created, *args, **kwargs):
 post_save.connect(user_created_receiver, sender=User)
 
 
+
 class CardManager(models.Manager):
     def add_new(self, billing_profile, token):
         if token:
