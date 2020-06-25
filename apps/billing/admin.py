@@ -16,3 +16,10 @@ class CardAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Card
+
+@admin.register(Charge)
+class ChargeAdmin(admin.ModelAdmin):
+
+
+    class Meta:
+        model = Charge
