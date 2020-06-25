@@ -59,13 +59,15 @@ class ProductDetailSlugView(ObjectViewedMixin, DetailView):
     template_name = 'products/detail.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        print("ProductDetailSlugView-> get_context_data")
+        context = super().get_context_data( **kwargs)
         # print(f'Context: {context}')
         cart_obj, new_obj = Cart.objects.new_or_get(self.request)
         context['cart'] = cart_obj
         return context
 
     def get_object(self, *args, **kwargs):
+        print("ProductDetailSlugView")
         request = self.request
         slug = self.kwargs.get('slug')
         # instance = get_object_or_404(Product, slug=slug, active=True)
@@ -94,6 +96,7 @@ class ProductDetailView(ObjectViewedMixin, DetailView):
         return context
 
     def get_object(self, *args, **kwargs):
+        print("ProductDetailView")
         request = self.request
         pk = self.kwargs.get('pk')
         instance = Product.objects.get_by_id(pk)
