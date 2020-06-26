@@ -25,3 +25,11 @@ de aici luam MAILCHIMP_EMAIL_LIST_ID
 
 si il adaugam in settings.py -> MAILCHIMP_EMAIL_LIST_ID = "66dfabe12f"
 
+======================================
+
+Work with Mailchimp API 3.0
+
+https://<dc>.api.mailchimp.com/3.0/
+
+unde <dc> - data center
+
