@@ -58,6 +58,16 @@ AUTH_USER_MODEL = 'accounts.User'
 FORCE_SESSION_TO_ONE = False
 FORCE_INACTIVE_USER_ENDSESSION= False
 
+# ######## MAILCHIMP settings ################
+
+MAILCHIMP_API_KEY           = "82ccf13f1459f694b1364c3e82dd8aa4-us10"
+MAILCHIMP_DATA_CENTER       = "us10"
+MAILCHIMP_EMAIL_LIST_ID     = "66dfabe12f"
+
+# ######## END MAILCHIMP settings ################
+
+
+
 STRIPE_SECRET_KEY = "sk_test_51Gxu7mBgsgm0vdRS0V3qyVq8CmdM7ZW13BYNylWjlfyyAGKPLfpoZcQAKzePNZcqYgMn6aBeG0pVMfl7VWiPwX9X00yQRBPTah"
 STRIPE_PUB_KEY = 'pk_test_51Gxu7mBgsgm0vdRSpZaF0ImDWNJH9ZW1d0lHyzo9KiHSPxkvktfStGLDMDvgtbKzuFAjitgFUoLvUhSGL122yE0Y00fSOJwl2M'
 

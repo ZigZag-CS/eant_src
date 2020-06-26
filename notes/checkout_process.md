@@ -5,8 +5,11 @@ Stripe API
 > https://stripe.com/docs/payments
 > https://stripe.com/docs/payments/accept-a-payment-charges#web
 
+Mailchimp integrations:
+> https://www.codingforentrepreneurs.com/blog/mailchimp-integration/
 
-
+Marketinf vs Transaction Email:
+> https://sendgrid.com/blog/marketing-email-vs-transactional-email-whats-difference/
 
 Checkout Process
 
