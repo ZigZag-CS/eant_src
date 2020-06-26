@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'apps.billing.apps.BillingConfig',
     'apps.addresses.apps.AddressesConfig',
     'apps.analytics.apps.AnalyticsConfig',
+    'apps.marketing.apps.MarketingConfig',
 
 ]
 
@@ -101,6 +102,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, 'apps/accounts/templates'),
             os.path.join(BASE_DIR, 'apps/addresses/templates'),
             os.path.join(BASE_DIR, 'apps/billing/templates'),
+            os.path.join(BASE_DIR, 'apps/marketing/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
