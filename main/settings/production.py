@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = 's&$$9m9mmxja2a43i4-by+i$i1y@=-z&b(=hv=+x*neb#2c)eo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -184,3 +184,4 @@ STATICFILES_FINDERS = (
 )
 
 
+# -*- coding: utf-8 -*-

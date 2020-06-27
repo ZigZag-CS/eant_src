@@ -184,3 +184,4 @@ STATICFILES_FINDERS = (
 )
 
 
+# -*- coding: utf-8 -*-
