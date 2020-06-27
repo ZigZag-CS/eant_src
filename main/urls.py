@@ -54,6 +54,7 @@ urlpatterns = [
     path('search/', include("apps.search.urls", namespace="search")),
 
     path('settings/email/', MarketingPreferenceUpdateView.as_view(), name='marketing-pref'),
+    path('webhooks/mailchimp/', MailchimpWebhookView.as_view(), name='webhooks-mailchimp'),
 
     # path('products/', ProductListView.as_view()),
     # # path('products/<int:pk>/', ProductDetailView.as_view()),
