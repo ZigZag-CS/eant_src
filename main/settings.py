@@ -61,9 +61,9 @@ FORCE_INACTIVE_USER_ENDSESSION= False
 
 # ######## MAILCHIMP settings ################
 
-MAILCHIMP_API_KEY           = "ad18b1c34e9ec7dde8a72712dada9140-us10"
+MAILCHIMP_API_KEY           = "f278d3c1cd861d90f0fd6119d24f35f5-us10"
 MAILCHIMP_DATA_CENTER       = "us10"
-MAILCHIMP_EMAIL_LIST_ID     = "66dfabe12f"
+MAILCHIMP_EMAIL_LIST_ID     = "f3d2fd2988"
 
 # ######## END MAILCHIMP settings ################
 

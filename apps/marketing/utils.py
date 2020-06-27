@@ -37,24 +37,29 @@ class Mailchimp(object):
 
 
     def get_members_endpoint(self):
+        # print("in get_members_endpoint")
+        print(self.list_endpoint)
         return self.list_endpoint + "/members"
 
 
     def change_subcription_status(self, email, status='unsubscribed'):
         hashed_email = get_subscriber_hash(email)
         endpoint = self.get_members_endpoint() + "/" + hashed_email
+        # print(f'in change_subcription_status, endpoint= {endpoint}')
         data = {
+            "email_address": email,
             "status": self.check_valid_status(status)
         }
         r = requests.put(endpoint, auth=("", self.key), data=json.dumps(data))
-        return r.json()
+        # print(f' r status = {r.status_code}')
+        return r.status_code, r.json()
 
 
     def check_subcription_status(self, email):
         hashed_email = get_subscriber_hash(email)
         endpoint = self.get_members_endpoint() + "/" +  hashed_email
         r = requests.get(endpoint, auth=("", self.key))
-        return r.json()
+        return r.status_code, r.json()
 
 
     def check_valid_status(self, status):
@@ -78,6 +83,23 @@ class Mailchimp(object):
         #     data=json.dumps(data)
         # )
         return self.change_subcription_status(email, status='subscribed')
+
+    def add_email1(self, email):
+        status = "subscribed"
+        self.check_valid_status(status)
+        data = {
+            "email_address": email,
+            "status": status
+        }
+        endpoint = self.list_endpoint + "/members"
+        # print(f"add_email1 endpoint = {endpoint}")
+        r = requests.post(
+            endpoint,
+            auth=("", self.key),
+            data=json.dumps(data)
+        )
+        # print(f"add_email1 r = {r}")
+        return r.json()
 
     def unsubscribe(self, email):
         return self.change_subcription_status(email, status='unsubscribed')
