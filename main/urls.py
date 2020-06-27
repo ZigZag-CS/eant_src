@@ -24,6 +24,7 @@ from apps.accounts.views import *
 from apps.carts.views import *
 from apps.billing.views import *
 from apps.addresses.views import checkout_address_create_view, checkout_address_reuse_view
+from apps.marketing.views import *
 from .views import *
 
 urlpatterns = [
@@ -31,19 +32,28 @@ urlpatterns = [
     path('about/', about_page, name="about"),
     path('contact/', contact_page, name="contact"),
     path('login/', LoginView.as_view(), name="login"),
+
     path('checkout/address/create/', checkout_address_create_view, name='checkout_address_create'),
     path('checkout/address/reuse/', checkout_address_reuse_view, name='checkout_address_reuse'),
+
     path('register/guest/', guest_register_view, name='guest_register'),
-    path('api/cart/', cart_detail_api_view, name="api-cart"),
     path('logout/', LogoutView.as_view(), name="logout"),
+
     path('api/cart/', cart_detail_api_view, name='api-cart'),
     path('cart/', include("apps.carts.urls", namespace="carts")),
+
     path('billing/payment-method/', payment_method_view, name='billing-payment-method'),
     path('billing/payment-method/create/', payment_method_createview, name='billing-payment-method-endpoint'),
+
     path('register/', RegisterView.as_view(), name="register"),
+
     path('bootstrap/', TemplateView.as_view(template_name="bootstrap/example.html")),
+
     path('products/', include("apps.products.urls", namespace="products")),
+
     path('search/', include("apps.search.urls", namespace="search")),
+
+    path('settings/email/', MarketingPreferenceUpdateView.as_view(), name='marketing-pref'),
 
     # path('products/', ProductListView.as_view()),
     # # path('products/<int:pk>/', ProductDetailView.as_view()),
