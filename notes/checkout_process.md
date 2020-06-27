@@ -37,3 +37,4 @@ python manage.py dumpdata products --format json  --indent 4 > apps/products/fix
 
 4.2. Restore from Fixtures
 python manage.py loaddata apps/products/fixtures/products.json
+
