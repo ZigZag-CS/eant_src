@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -95,14 +96,14 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-            os.path.join(BASE_DIR, 'apps/products/templates'),
-            os.path.join(BASE_DIR, 'apps/search/templates'),
-            os.path.join(BASE_DIR, 'apps/carts/templates'),
-            os.path.join(BASE_DIR, 'apps/accounts/templates'),
-            os.path.join(BASE_DIR, 'apps/addresses/templates'),
-            os.path.join(BASE_DIR, 'apps/billing/templates'),
-            os.path.join(BASE_DIR, 'apps/marketing/templates'),
+            os.path.join(BASE_DIR, '../../templates'),
+            os.path.join(BASE_DIR, 'apps/products/../../apps/products/templates'),
+            os.path.join(BASE_DIR, 'apps/search/../../apps/search/templates'),
+            os.path.join(BASE_DIR, 'apps/carts/../../apps/carts/templates'),
+            os.path.join(BASE_DIR, 'apps/accounts/../../apps/accounts/templates'),
+            os.path.join(BASE_DIR, 'apps/addresses/../../apps/addresses/templates'),
+            os.path.join(BASE_DIR, 'apps/billing/../../apps/billing/templates'),
+            os.path.join(BASE_DIR, 'apps/marketing/../../apps/marketing/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -125,7 +126,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, '../../db.sqlite3'),
     }
 }
 
@@ -171,11 +172,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "../../static"),
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '../../media')
 
 STATICFILES_FINDERS = (
     "django.contrib.staticfiles.finders.FileSystemFinder",
