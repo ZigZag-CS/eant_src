@@ -18,7 +18,7 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 
 from apps.accounts.views import *
 from apps.carts.views import *
@@ -32,7 +32,8 @@ urlpatterns = [
     path('about/', about_page, name="about"),
 
     # path('accounts/login/', RedirectView.as_view(url='/login')),
-    path('accounts/', include("apps.accounts.urls", namespace='accounts')),
+    path('accounts/', RedirectView.as_view(url='/account')),
+    path('account/', include("apps.accounts.urls", namespace='accounts')),
 
     path('contact/', contact_page, name="contact"),
 
@@ -58,6 +59,7 @@ urlpatterns = [
 
     path('search/', include("apps.search.urls", namespace="search")),
 
+    path('settings/', RedirectView.as_view(url='/account')),
     path('settings/email/', MarketingPreferenceUpdateView.as_view(), name='marketing-pref'),
     path('webhooks/mailchimp/', MailchimpWebhookView.as_view(), name='webhooks-mailchimp'),
 

@@ -65,7 +65,7 @@ LOGOUT_URL = '/logout/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'ps96068@gmail.com'
-EMAIL_HOST_PASSWORD = 'CioaraOarba96068!@'
+EMAIL_HOST_PASSWORD = '!@'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "Eant - src <ps96068@gmail.com>"
