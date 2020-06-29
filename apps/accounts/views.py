@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model, authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.http import HttpResponse
 from django.views.generic import CreateView, FormView, DetailView
@@ -62,14 +63,16 @@ class LoginView(FormView):
         redirect_path = next_ or next_post or None
         # print(f"pana la email: {form.cleaned_data} ")
         email  = form.cleaned_data.get("username")
-        print(f"email: {email} ")
+        # print(f"email: {email} ")
         password  = form.cleaned_data.get("password")
-        print(f"password: {password} ")
-        print(f"request: {request} ")
+        # print(f"password: {password} ")
+        # print(f"request: {request} ")
         user = authenticate(request, username=email, password=password)
-        print(f"pana la {user} :")
+        # print(f"pana la {user} :")
         if user is not None:
-            # print("pana la logi(....)")
+            if not user.is_active:
+                messages.error(request, 'This user is inactive')
+                return super(LoginView, self).form_invalid(form)
             login(request, user)
             user_logged_in.send(user.__class__, instance=user, request=request)
             try:

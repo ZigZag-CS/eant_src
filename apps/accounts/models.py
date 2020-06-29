@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+from django.core.mail import send_mail
+from django.template.loader import get_template
+
+# send_mail(subject, message, from_email, recipient_list, html_message)
 
 
 class UserManager(BaseUserManager):
@@ -46,7 +50,6 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     email       = models.EmailField(max_length=255, unique=True)
     full_name   = models.CharField(max_length=255, blank=True, null=True)
-    active      = models.BooleanField(default=True) # can login
     is_active      = models.BooleanField(default=True) # can login
     staff       = models.BooleanField(default=False) # staff user non superuser
     admin       = models.BooleanField(default=False) # superuser
