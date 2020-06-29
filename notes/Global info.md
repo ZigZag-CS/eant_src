@@ -6,3 +6,10 @@ Create a Blank Django Project
 
 >  https://www.codingforentrepreneurs.com/blog/django-virtualenv-python-gitignore-file/
 
+GIT setup:
+
+> https://www.codingforentrepreneurs.com/blog/setup-git-github-repo/
+
+Go live with Heroku:
+
+> https://www.codingforentrepreneurs.com/blog/go-live-with-django-project-and-heroku/
