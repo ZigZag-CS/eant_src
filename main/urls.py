@@ -34,6 +34,7 @@ urlpatterns = [
     # path('accounts/login/', RedirectView.as_view(url='/login')),
     path('accounts/', RedirectView.as_view(url='/account')),
     path('account/', include("apps.accounts.urls", namespace='account')),
+    path('accounts/', include("apps.accounts.passwords.urls")),
 
     path('contact/', contact_page, name="contact"),
 

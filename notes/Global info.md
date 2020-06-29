@@ -17,3 +17,10 @@ Go live with Heroku:
 Use Gmail for Email in Django
 
 > https://www.codingforentrepreneurs.com/blog/use-gmail-for-email-in-django/
+
+Django's Built In Password Management
+
+> https://www.codingforentrepreneurs.com/blog/howto-implement-django-builtin-password-management/
+
+
+
