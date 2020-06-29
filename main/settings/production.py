@@ -23,6 +23,26 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 's&$$9m9mmxja2a43i4-by+i$i1y@=-z&b(=hv=+x*neb#2c)eo'
 
+
+# ######## GMAIL settings ################
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ps96068@gmail.com'
+EMAIL_HOST_PASSWORD = 'CioaraOarba96068!@'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "Eant - src <ps96068@gmail.com>"
+
+MANAGERS = (
+    ("Stefan Popa", "ps96068@gmail.com" ),
+)
+
+ADMINS = MANAGERS
+
+# ######## END GMAIL settings ################
+
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 

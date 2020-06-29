@@ -57,6 +57,26 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'accounts.User'
 
+
+# ######## GMAIL settings ################
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ps96068@gmail.com'
+EMAIL_HOST_PASSWORD = 'CioaraOarba96068!@'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "Eant - src <ps96068@gmail.com>"
+
+MANAGERS = (
+    ("Stefan Popa", "ps96068@gmail.com" ),
+)
+
+ADMINS = MANAGERS
+
+# ######## END GMAIL settings ################
+
+
+
 FORCE_SESSION_TO_ONE = False
 FORCE_INACTIVE_USER_ENDSESSION= False
 

@@ -13,7 +13,10 @@ class ObjectViewedMixin(object):
         request = self.request
         instance = context.get('object')
         # print(f'instance: {instance}')
-        if request.user.is_authenticated and instance:
-            # print(f'instance: TRUE')
+        if instance:
             object_viewed_signal.send(instance.__class__, instance=instance, request=request)
         return context
+        # if request.user.is_authenticated and instance:
+        #     # print(f'instance: TRUE')
+        #     object_viewed_signal.send(instance.__class__, instance=instance, request=request)
+        # return context

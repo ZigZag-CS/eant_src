@@ -13,3 +13,7 @@ GIT setup:
 Go live with Heroku:
 
 > https://www.codingforentrepreneurs.com/blog/go-live-with-django-project-and-heroku/
+
+Use Gmail for Email in Django
+
+> https://www.codingforentrepreneurs.com/blog/use-gmail-for-email-in-django/
