@@ -30,7 +30,12 @@ from .views import *
 urlpatterns = [
     path('', home_page, name="home"),
     path('about/', about_page, name="about"),
+
+    # path('accounts/login/', RedirectView.as_view(url='/login')),
+    path('accounts/', include("apps.accounts.urls", namespace='accounts')),
+
     path('contact/', contact_page, name="contact"),
+
     path('login/', LoginView.as_view(), name="login"),
 
     path('checkout/address/create/', checkout_address_create_view, name='checkout_address_create'),
