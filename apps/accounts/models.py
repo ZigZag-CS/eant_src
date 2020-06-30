@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
@@ -5,9 +7,12 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core.mail import send_mail
 from django.db.models.signals import post_save, pre_save
 from django.template.loader import get_template
+from django.utils import timezone
 
 from main.utils import random_string_generator, unique_key_generator
 # send_mail(subject, message, from_email, recipient_list, html_message)
+
+DEFAULT_ACTIVATION_DAYS = getattr(settings, 'DEFAULT_ACTIVATION_DAYS', 7)
 
 
 class UserManager(BaseUserManager):
@@ -96,6 +101,31 @@ class User(AbstractBaseUser):
     # def is_active(self):
     #     return self.active
 
+# ############# Activation email Models ##########################
+
+class EmailActivationQuerySet(models.query.QuerySet):
+
+    def confirmable(self):
+        now = timezone.now()
+        start_range = now - timedelta(days=DEFAULT_ACTIVATION_DAYS)
+        # does my object have a timestamp in here
+        end_range = now
+        return self.filter(
+                activated = False,
+                forced_expired = False
+              ).filter(
+                timestamp__gt=start_range,
+                timestamp__lte=end_range
+              )
+
+
+class EmailActivationManager(models.Manager):
+
+    def get_queryset(self):
+        return EmailActivationQuerySet(self.model, using=self._db)
+
+    def confirmable(self):
+        return self.get_queryset().confirmable()
 
 
 class EmailActivation(models.Model):
@@ -108,8 +138,29 @@ class EmailActivation(models.Model):
     timestamp       = models.DateTimeField(auto_now_add=True)
     update          = models.DateTimeField(auto_now=True)
 
+    objects = EmailActivationManager()
+
+
     def __str__(self):
         return self.email
+
+    def can_activate(self):
+        qs = EmailActivation.objects.filter(pk=self.pk).confirmable()  # 1 object
+        if qs.exists():
+            return True
+        return False
+
+    def activate(self):
+        if self.can_activate():
+            # pre activation user signal
+            user = self.user
+            user.is_active = True
+            user.save()
+            # post activation signal for user
+            self.activated = True
+            self.save()
+            return True
+        return False
 
     def regenerate(self):
         self.key = None
@@ -133,7 +184,14 @@ class EmailActivation(models.Model):
                 subject = '1-Click Email Verification'
                 from_email = settings.DEFAULT_FROM_EMAIL
                 recipient_list = [self.email]
-                sent_mail = send_mail(subject, txt_, from_email, recipient_list, html_message=html_, fail_silently=False,)
+                sent_mail = send_mail(
+                    subject,
+                    txt_,
+                    from_email,
+                    recipient_list,
+                    html_message=html_,
+                    fail_silently=False,
+                )
                 return sent_mail
         return False
 
@@ -155,7 +213,7 @@ def post_save_user_create_reciever(sender, instance, created, *args, **kwargs):
 post_save.connect(post_save_user_create_reciever, sender=User)
 
 
-
+# ############# END Activation email Models ##########################
 
 class GuestEmail(models.Model):
     email       = models.EmailField()
