@@ -32,6 +32,7 @@ EMAIL_HOST_PASSWORD = '!@'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "Eant - src <ps96068@gmail.com>"
+BASE_URL = "http://**************"
 
 MANAGERS = (
     ("Stefan Popa", "ps96068@gmail.com" ),

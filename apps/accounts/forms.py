@@ -60,6 +60,7 @@ class LoginForm(forms.Form):
     username = forms.EmailField(label="Email")
     password = forms.CharField(widget=forms.PasswordInput)
 
+
 # seamana oleaka cu UserAdminCreationForm
 class RegisterForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
@@ -108,7 +109,7 @@ class RegisterForm(forms.ModelForm):
     def save(self, commit=True):
         # Save the provided password in hashed format
         user = super(RegisterForm, self).save(commit=False)
-        print(self.cleaned_data)
+        # print(self.cleaned_data)
         user.set_password(self.cleaned_data["password"])
         user.is_active = False  # send confirmation email
         if commit:

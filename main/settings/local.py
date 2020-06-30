@@ -66,9 +66,10 @@ LOGOUT_URL = '/logout/'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'ps96068@gmail.com'
 EMAIL_HOST_PASSWORD = '!@'
-EMAIL_PORT = 587
+EMAIL_PORT = 465
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = "Eant - src <ps96068@gmail.com>"
+BASE_URL = "http://127.0.0.1:8000"
 
 MANAGERS = (
     ("Stefan Popa", "ps96068@gmail.com" ),
