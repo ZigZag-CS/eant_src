@@ -56,6 +56,8 @@ urlpatterns = [
 
     path('bootstrap/', TemplateView.as_view(template_name="bootstrap/example.html")),
 
+    path('orders/', include("apps.orders.urls", namespace='orders')),
+
     path('products/', include("apps.products.urls", namespace="products")),
 
     path('search/', include("apps.search.urls", namespace="search")),

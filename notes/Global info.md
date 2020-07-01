@@ -22,5 +22,7 @@ Django's Built In Password Management
 
 > https://www.codingforentrepreneurs.com/blog/howto-implement-django-builtin-password-management/
 
+HTML Template to PDF in Django
 
+> https://www.youtube.com/watch?v=B7EIK9yVtGY
 

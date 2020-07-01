@@ -2,6 +2,7 @@ from decimal import Decimal
 from math import fsum
 from django.db import models
 from django.db.models.signals import pre_save, post_save
+from django.urls import reverse
 
 from apps.addresses.models import Address
 from apps.billing.models import BillingProfile
@@ -15,11 +16,32 @@ ORDER_STATUS_CHOICES = (
     ('refunded', 'Refunded'),
 )
 
+class OrderManagerQuerySet(models.query.QuerySet):
+
+    def by_request(self, request):
+        billing_profile, created = BillingProfile.objects.new_or_get(request)
+        return self.filter(billing_profile=billing_profile)
+
+    def not_created(self):
+        return self.exclude(status='created')
+
 
 class OrderManager(models.Manager):
+
+    def get_queryset(self):
+        return OrderManagerQuerySet(self.model, using=self._db)
+
+    def by_request(self, request):
+        return self.get_queryset().by_request(request)
+
     def new_or_get(self, billing_profile, cart_obj):
         created = False
-        qs = self.get_queryset().filter(billing_profile=billing_profile, cart=cart_obj, active=True, status='created')
+        qs = self.get_queryset().filter(
+            billing_profile=billing_profile,
+            cart=cart_obj,
+            active=True,
+            status='created'
+        )
         if qs.count() == 1:
             obj = qs.first()
         else:
@@ -40,9 +62,21 @@ class Order(models.Model):
     status          = models.CharField(max_length=120, default='created', choices=ORDER_STATUS_CHOICES)
     shipping_total  = models.DecimalField(default=5.99, max_digits=100, decimal_places=2)
     total           = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
-    active = models.BooleanField(default=True)
+    active          = models.BooleanField(default=True)
+    updated = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     objects = OrderManager()
+
+    def get_absolute_url(self):
+        return reverse("orders:detail", kwargs={"order_id": self.order_id})
+
+    def get_status(self):
+        if self.status == "refunded":
+            return "Refunded order"
+        elif self.status == "shipped":
+            return "Shipped."
+        return "Shipping soon."
 
     def update_total(self):
         cart_total = self.cart.total
@@ -70,6 +104,10 @@ class Order(models.Model):
 
     def __str__(self):
         return self.order_id
+
+    class Meta:
+        ordering = ['-timestamp', '-updated']
+
 
 
 def pre_save_create_order_id(sender, instance, *args, **kwargs):
