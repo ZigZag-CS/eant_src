@@ -62,19 +62,19 @@ LOGOUT_URL = '/logout/'
 
 # ######## GMAIL settings ################
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ps96068@gmail.com'
-EMAIL_HOST_PASSWORD = '!@'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = "Eant - src <ps96068@gmail.com>"
-BASE_URL = "127.0.0.1:8000"
-
-MANAGERS = (
-    ("Stefan Popa", "ps96068@gmail.com" ),
-)
-
-ADMINS = MANAGERS
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'ps96068@gmail.com'
+# EMAIL_HOST_PASSWORD = '!@'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = "Eant - src <ps96068@gmail.com>"
+# BASE_URL = "127.0.0.1:8000"
+#
+# MANAGERS = (
+#     ("Stefan Popa", "ps96068@gmail.com" ),
+# )
+#
+# ADMINS = MANAGERS
 
 # ######## END GMAIL settings ################
 
@@ -90,7 +90,18 @@ FORCE_INACTIVE_USER_ENDSESSION= False
 
 # ######## END MAILCHIMP settings ################
 
+# ######## SENDGRID settings ################
 
+SENDGRID_API_KEY = 'mfDjFmsdEA7zkrcsU'
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "Eant - src <ps96068@gmail.com>"
+
+# ######## END SENDGRID settings ################
 
 STRIPE_SECRET_KEY = "sk_test_51Gxu7mBgsgm0vdRS0V3qyVq8CmdM7ZW13BYNylWjlfyyAGKPLfpoZcQAKzePNZcqYgMn6aBeG0pVMfl7VWiPwX9X00yQRBPTah"
 STRIPE_PUB_KEY = 'pk_test_51Gxu7mBgsgm0vdRSpZaF0ImDWNJH9ZW1d0lHyzo9KiHSPxkvktfStGLDMDvgtbKzuFAjitgFUoLvUhSGL122yE0Y00fSOJwl2M'

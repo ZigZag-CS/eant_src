@@ -103,8 +103,8 @@ class User(AbstractBaseUser):
     # def is_active(self):
     #     return self.active
 
-# ############# Activation email Models ##########################
 
+# ############# Activation email Models ##########################
 class EmailActivationQuerySet(models.query.QuerySet):
 
     def confirmable(self):
@@ -202,6 +202,8 @@ class EmailActivation(models.Model):
                     html_message=html_,
                     fail_silently=False,
                 )
+                print("In functia < send_activation > din class EmailActivation(models.Model) ")
+                print(sent_mail)
                 return sent_mail
         return False
 

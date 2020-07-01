@@ -63,23 +63,34 @@ LOGOUT_URL = '/logout/'
 
 # ######## GMAIL settings ################
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ps96068@gmail.com'
-EMAIL_HOST_PASSWORD = '!@'
-EMAIL_PORT = 465
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = "Eant - src <ps96068@gmail.com>"
-BASE_URL = "http://127.0.0.1:8000"
-
-MANAGERS = (
-    ("Stefan Popa", "ps96068@gmail.com" ),
-)
-
-ADMINS = MANAGERS
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'ps96068@gmail.com'
+# EMAIL_HOST_PASSWORD = '!@'
+# EMAIL_PORT = 465
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = "Eant - src <ps96068@gmail.com>"
+# BASE_URL = "http://127.0.0.1:8000"
+#
+# MANAGERS = (
+#     ("Stefan Popa", "ps96068@gmail.com" ),
+# )
+#
+# ADMINS = MANAGERS
 
 # ######## END GMAIL settings ################
 
+# ######## SENDGRID settings ################
 
+SENDGRID_API_KEY = SENDGRID_API_KEY = 'mfDjFmsdEA7zkrcsU'
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "Eant - src <ps96068@gmail.com>"
+
+# ######## END SENDGRID settings ################
 
 FORCE_SESSION_TO_ONE = False
 FORCE_INACTIVE_USER_ENDSESSION= False
