@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.http import HttpResponse
 from django.utils.safestring import mark_safe
-from django.views.generic import CreateView, FormView, DetailView, View
+from django.views.generic import CreateView, FormView, DetailView, View, UpdateView
 from django.shortcuts import render, redirect
 from django.utils.http import is_safe_url
 from django.views.generic.edit import FormMixin
@@ -159,6 +159,25 @@ class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = 'accounts/register.html'
     success_url = '/login/'
+
+
+class UserDetailUpdateView(LoginRequiredMixin ,UpdateView):
+    form_class = UserDetailChangeForm
+    template_name = 'accounts/detail-update-view.html'
+    # success_url = '/account/'
+
+    def get_object(self):
+        return self.request.user
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(UserDetailUpdateView, self).get_context_data(*args, **kwargs)
+        context['title'] = 'Change Your account details'
+        return context
+
+    def get_success_url(self):
+        return reverse("account:home")
+
+
 
 
 
