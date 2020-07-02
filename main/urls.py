@@ -23,7 +23,7 @@ from django.views.generic import TemplateView, RedirectView
 from apps.accounts.views import *
 from apps.carts.views import *
 from apps.billing.views import *
-from apps.addresses.views import checkout_address_create_view, checkout_address_reuse_view
+from apps.addresses.views import checkout_address_create_view, checkout_address_reuse_view, AddressListView
 from apps.marketing.views import *
 from .views import *
 
@@ -35,6 +35,9 @@ urlpatterns = [
     path('accounts/', RedirectView.as_view(url='/account')),
     path('account/', include("apps.accounts.urls", namespace='account')),
     path('accounts/', include("apps.accounts.passwords.urls")),
+
+    path('address/', RedirectView.as_view(url='/addresses')),
+    path('addresses/', AddressListView.as_view(), name='addresses'),
 
     path('contact/', contact_page, name="contact"),
 
